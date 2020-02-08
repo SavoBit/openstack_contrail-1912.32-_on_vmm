@@ -48,7 +48,7 @@ instances:
           TSN_EVPN_MODE: true
 
 contrail_configuration:
-  CONTRAIL_VERSION: 1910.23
+  CONTRAIL_VERSION: 1912.32
   CLOUD_ORCHESTRATOR: openstack
   ENCAP_PRIORITY: VXLAN,MPLSoUDP,MPLSoGRE
   UPGRADE_KERNEL: true
@@ -114,15 +114,15 @@ all:
     openstack_tenant_name: admin
     openstack_auth_url: http://172.16.11.10:5000/v3
     appformix_docker_images:
-      - /root/appformix/appformix-platform-images-3.1.6.tar.gz
-      - /root/appformix/appformix-dependencies-images-3.1.6.tar.gz
-      - /root/appformix/appformix-network_device-images-3.1.6.tar.gz
-      - /root/appformix/appformix-openstack-images-3.1.6.tar.gz
+      - /root/appformix/appformix-platform-images-3.1.12.tar.gz
+      - /root/appformix/appformix-dependencies-images-3.1.12.tar.gz
+      - /root/appformix/appformix-network_device-images-3.1.12.tar.gz
+      - /root/appformix/appformix-openstack-images-3.1.12.tar.gz
     openstack_platform_enabled: true
     # appformix_license: /opt/software/openstack_appformix/<appformix-contrail-license-file>.sig
     appformix_license: /root/appformix/appformix-internal-openstack-3.1.sig
     appformix_docker_registry: registry.appformix.com/
-    appformix_version: 3.1.6      #Must be 2.18.x or above
+    appformix_version: 3.1.12      #Must be 2.18.x or above
     appformix_plugins: '{{ appformix_contrail_factory_plugins }} + {{ appformix_network_device_factory_plugins }} + {{ appformix_openstack_factory_plugins }}'
     appformix_kvm_instance_discovery: true
     # For enabling pre-requisites for package installation

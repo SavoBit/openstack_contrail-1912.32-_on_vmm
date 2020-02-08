@@ -2,6 +2,8 @@
 release 0.2
 This document provides information on how to install Openstack and Contrail in the VMM environment.
 
+This document is tested with Openstack Queen, Contrail Networking 1912.32 and Appformix 3.1.12
+
 ## Topology
 The logical topology of the testbed is as follows :
 ![topology](images/topology.png)
@@ -127,7 +129,7 @@ command to copy /etc/hosts
 	done 
 ```
 ## Openstack and Contrail installation using ansible deployer
-1. For contrail 1910, please follow the [manual](https://www.juniper.net/documentation/en_US/contrail19/topics/concept/install-contrail-ocata-kolla-50.html)
+1. For the latest contrail networking, please follow the [manual](https://www.juniper.net/documentation/en_US/contrail19/topics/concept/install-contrail-ocata-kolla-50.html)
 
 	The documentation mention that the ansible version required is 2.7.10, 
 	but this version may not be available anymore from EPEL repository.
