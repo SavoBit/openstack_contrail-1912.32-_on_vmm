@@ -73,13 +73,13 @@ The IP fabric configuration is eBGP routing protocol and static for underlay.
 ![static_route_gw2](images/static_route_gw2.png)
 
 4. The following [junos configuration](junos_config/conf/) can be used, which will establish IP Fabric using eBGP. Ansible playbook [config2.8.yaml](junos_config/config2.8.yaml) can be used to upload the configuration into VMX and VQFX
-![config1](image/vmm_config1.png)
-![config2](image/vmm_config2.png)
+![config1](images/vmm_config1.png)
+![config2](images/vmm_config2.png)
 
 5. Another Ansible playbook [backup_config3.2.yaml](junos_config/backup_config3.2.yaml) can be used to backup the configuration from VMX and VQFX
 
 6. Access node0, and test connectivity to vmx1, spine1, spine2, leaf1, and leaf2
-![ping3](image/ping3.png)
+![ping3](images/ping3.png)
 
 
 ## Initial nodes configuration 
