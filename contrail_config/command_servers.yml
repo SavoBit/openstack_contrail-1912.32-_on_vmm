@@ -10,7 +10,7 @@ command_servers:
  
         registry_insecure: false
         container_registry: hub.juniper.net/contrail
-        container_tag: "1910.23"
+        container_tag: "1912.32"
         container_registry_username: <username>
         container_registry_password: <password>
         config_dir: /etc/contrail

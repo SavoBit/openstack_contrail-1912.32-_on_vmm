@@ -1,8 +1,9 @@
 # Installing openstack and contrail in VMM
 release 0.2
+
 This document provides information on how to install Openstack and Contrail in the VMM environment.
 
-This document is tested with Openstack Queen, Contrail Networking 1912.32 and Appformix 3.1.12
+This document is tested with Openstack Queen, Contrail Networking 1912.32 and Appformix 3.1.12, running on Centos 7.5
 
 ## Topology
 The logical topology of the testbed is as follows :
@@ -55,9 +56,8 @@ subnets in the testbed
 ## IP Fabric configuration
 the DC fabric consist of vQFX (spine1, spine2, leaf1 and leaf2) and vMX.
 
-You can create your own configuration for the junos devices, or use the following example of [junos_config](junos_config/conf).
+You can create your own configuration for the junos devices for IP Fabric, or use the following examples of [junos_config](junos_config/conf).  The IP fabric configuration is eBGP routing protocol and static for underlay.
 
-The IP fabric configuration is eBGP routing protocol and static for underlay.
 1. To access the devices directly from your workstation, you can copy the file [ssh_config](ssh_config) into your ~/.ssh/config. Don't forget to set the ip address of vmmgw to the ip address of the jump host
 ![access4](images/vmm_access4.png)
 ![access5](images/vmm_access5.png)
