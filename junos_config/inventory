@@ -1,0 +1,8 @@
+[all]
+vmx1
+spine1
+spine2
+leaf1
+leaf2
+[all:vars]
+ansible_python_interpreter=/usr/bin/python

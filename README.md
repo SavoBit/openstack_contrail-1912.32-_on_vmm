@@ -28,9 +28,10 @@ The devices/nodes in the topology are :
 
 subnets in the testbed
 - lan1 : 172.16.11.0/24
-- vmxg0 (link between GW and VMX ) : 172.16.12.0/31
-- vmxg1 (link between GW and VMX ) : 172.16.12.2/31
-- management: 172.16.14.0/24
+- vmxg0 (link between GW and VMX ) : 172.16.12.12/31
+- vmxg1 (link between GW and VMX ) : 172.16.12.14/31
+- management: 172.16.13.0/24
+- loopback for vMX and vQFX : 172.16.255.0/24
 
 ## Setup the testbed
 1. Create yaml file for the lab topology, or you can use the following [lab.yaml](lab.yaml)
@@ -50,22 +51,35 @@ subnets in the testbed
 ![ping2](images/ping2.png)
 
 ## IP Fabric configuration
-the DC fabric consist of vQFX (spine1, spine2, leaf1 and leaf2) and GW.
+the DC fabric consist of vQFX (spine1, spine2, leaf1 and leaf2) and vMX.
 
-You can create your own configuration for the junos devices, or use the following example of [junos_config](junos_config/) and [quagga config for GW](quagga_config/).
+You can create your own configuration for the junos devices, or use the following example of [junos_config](junos_config/conf).
 
-The IP fabric configuration is BGP routing protocol for underlay.
+The IP fabric configuration is eBGP routing protocol and static for underlay.
+1. To access the devices directly from your workstation, you can copy the file [ssh_config](ssh_config) into your ~/.ssh/config. Don't forget to set the ip address of vmmgw to the ip address of the jump host
+![access4](image/vmm_access4.png)
+![access5](image/vmm_access5.png)
 
-### Installing quagga on GW
-1. Install guagga on GW
-![install_quagga](images/install_quagga.png)
-2. create initial configuration [quagga config](quagga_config/bgpd.conf) for bgpd, and start zebra and bgpd services on GW. 
-3. Verify that GW has received bgp information from VMX 
-![bgp_on_gw](images/bgp_on_gw.png)
-4. Verify that junos devices (vmx, spine1, spine2, leaf1, leaf2) has received bgp information from GW
-![bgp_on_vmx](images/bgp_on_vmx.png)
-5. From node0, verify connectivity to junos devices in the IP Fabric
-![node0_ping](images/node0_ping.png)
+2. open ssh gw into GW, and create static route to 172.16.255.0/24 (to provide connectivity to the loopback of the junos device in the ip fabric
+```
+   ip route add 172.16.255.0/24 via 172.16.12.13
+```
+![static_route_gw1](images/static_route_gw1.png)
+
+3. To make static route permanent, add it into /etc/rc.local
+```
+   echo "ip route add 172.16.255.0/24 via 172.16.12.13" >> /etc/rc.local
+```
+![static_route_gw2](images/static_route_gw2.png)
+
+4. The following [junos configuration](junos_config/conf/) can be used, which will establish IP Fabric using eBGP. Ansible playbook [config2.8.yaml](junos_config/config2.8.yaml) can be used to upload the configuration into VMX and VQFX
+![config1](image/vmm_config1.png)
+![config2](image/vmm_config2.png)
+
+5. Another Ansible playbook [backup_config3.2.yaml](junos_config/backup_config3.2.yaml) can be used to backup the configuration from VMX and VQFX
+
+6. Access node0, and test connectivity to vmx1, spine1, spine2, leaf1, and leaf2
+![ping3](image/ping3.png)
 
 
 ## Initial nodes configuration 
@@ -83,11 +97,11 @@ The IP fabric configuration is BGP routing protocol for underlay.
 	172.16.11.14    node4
 	172.16.11.15    node5
 	172.16.11.16    node6
-	172.16.255.0    sdngw
-	172.16.255.1    spine1
-	172.16.255.2    spine2
-	172.16.255.3    leaf1
-	172.16.255.4    leaf2
+	172.16.255.20    vmx1 
+	172.16.255.21    spine1
+	172.16.255.22    spine2
+	172.16.255.23    leaf1
+	172.16.255.24    leaf2
     ```
 2. create ssh-key on node6
 ![create_ssh_key_node6](images/create_ssh_key_node6.png)

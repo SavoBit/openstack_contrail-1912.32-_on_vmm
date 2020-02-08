@@ -1,32 +1,48 @@
 host vmmgw
-    hostname 10.49.233.85
+    hostname IP_ADDRESS
     user root
+    IdentityFile ~/.ssh/id_rsa
+host node6
+	user centos
 	IdentityFile ~/.ssh/id_rsa
-host node0
-	User centos
+	ProxyCommand ssh -W 172.16.11.16:22 vmmgw
+host svr1
+	user centos
 	IdentityFile ~/.ssh/id_rsa
-	ProxyCommand ssh -W 172.16.11.10:22 vmmgw
-host node1
-	User root
+	ProxyCommand ssh -W 172.16.13.11:22 vmmgw
+host svr2
+	user centos
 	IdentityFile ~/.ssh/id_rsa
-	ProxyCommand ssh -W 172.16.11.11:22 vmmgw
-host node2
-	User root
+	ProxyCommand ssh -W 172.16.13.12:22 vmmgw
+host svr3
+	user ubuntu
 	IdentityFile ~/.ssh/id_rsa
-	ProxyCommand ssh -W 172.16.11.12:22 vmmgw
-host node3
-	User root
+	ProxyCommand ssh -W 172.16.13.13:22 vmmgw
+host extl3
+	user centos
 	IdentityFile ~/.ssh/id_rsa
-	ProxyCommand ssh -W 172.16.11.13:22 vmmgw
-host node4
-	User root
+	ProxyCommand ssh -W 172.16.13.14:22 vmmgw
+host extl2
+	user ubuntu
 	IdentityFile ~/.ssh/id_rsa
-	ProxyCommand ssh -W 172.16.11.14:22 vmmgw
-host deployer
-	User root
+	ProxyCommand ssh -W 172.16.13.15:22 vmmgw
+host vmx1
+	user admin
 	IdentityFile ~/.ssh/id_rsa
-	ProxyCommand ssh -W 172.16.11.10:22 vmmgw
-host cc
-	User root
+	ProxyCommand ssh -W 172.16.13.20:22 vmmgw
+host spine1
+	user admin
 	IdentityFile ~/.ssh/id_rsa
-	ProxyCommand ssh -W 172.16.11.11:22 vmmgw
+	ProxyCommand ssh -W 172.16.13.21:22 vmmgw
+host spine2
+	user admin
+	IdentityFile ~/.ssh/id_rsa
+	ProxyCommand ssh -W 172.16.13.22:22 vmmgw
+host leaf1
+	user admin
+	IdentityFile ~/.ssh/id_rsa
+	ProxyCommand ssh -W 172.16.13.23:22 vmmgw
+host leaf2
+	user admin
+	IdentityFile ~/.ssh/id_rsa
+	ProxyCommand ssh -W 172.16.13.24:22 vmmgw

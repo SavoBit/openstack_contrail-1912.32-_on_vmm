@@ -5,7 +5,7 @@ vmm_pod:
     user: irzan
     image:
         centos: centos300g.img
-        ubuntu: ubuntu100g.img
+        ubuntu: ubuntu160406.img
         vmx_re: vmx-19.4R1.10/junos-vmx-x86-64-19.4R1.10.vmdk
         vmx_mpc: vmx-19.4R1.10/vFPC-20191114.img
         vqfx_re: vqfx/jinstall-vqfx-10-f-19.4R1.10.vmdk
@@ -27,11 +27,11 @@ vm:
             mtu: 9000
           em2: 
             bridge: g0 
-            ipv4: 172.16.12.0/31
+            ipv4: 172.16.12.12/31
             mtu: 9000
           em3: 
             bridge: g1 
-            ipv4: 172.16.12.2/31
+            ipv4: 172.16.12.14/31
           em4: 
             bridge: mgmt
             ipv4: 172.16.13.1/24
@@ -51,6 +51,7 @@ vm:
             bridge: lan1 
             ipv4: 172.16.11.11/24 
             gateway4: 172.16.11.1
+            mtu: 9000
     node2:
         type: pcxbig
         os: centos
@@ -59,6 +60,7 @@ vm:
             bridge: lan1 
             ipv4: 172.16.11.12/24 
             gateway4: 172.16.11.1
+            mtu: 9000
     node3:
         type: pcmedium
         os: centos
@@ -67,6 +69,7 @@ vm:
             bridge: lan1 
             ipv4: 172.16.11.13/24 
             gateway4: 172.16.11.1
+            mtu: 9000
     node4:
         type: pcxbig
         os: centos
@@ -104,7 +107,7 @@ vm:
         type: pcsmall
         os: centos
         interfaces:
-          em0
+          em0:
             bridge: mgmt
             ipv4: 172.16.13.12/24 
           em1: 
@@ -113,9 +116,9 @@ vm:
             bridge: l2p4
     svr3:
         type: pcsmall
-        os: centos
+        os: ubuntu 
         interfaces:
-          em0
+          em0:
             bridge: mgmt
             ipv4: 172.16.13.13/24 
           em1: 
@@ -126,16 +129,16 @@ vm:
         type: pcsmall
         os: centos
         interfaces:
-          em0
+          em0:
             bridge: mgmt
             ipv4: 172.16.13.14/24 
           em1: 
             bridge: g4
     extl2:
         type: pcsmall
-        os: centos
+        os: ubuntu
         interfaces:
-          em0
+          em0:
             bridge: mgmt
             ipv4: 172.16.13.15/24 
           em1: 
@@ -185,7 +188,7 @@ vm:
             bridge: s2l1
           xe-0/0/2: 
             bridge: s2l2
-     leaf1:
+    leaf1:
         type: junos
         os: vqfx
         interfaces:
@@ -200,7 +203,7 @@ vm:
             bridge: l1p2
           xe-0/0/3: 
             bridge: l1p3
-     leaf2:
+    leaf2:
         type: junos
         os: vqfx
         interfaces:
