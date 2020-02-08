@@ -57,8 +57,8 @@ You can create your own configuration for the junos devices, or use the followin
 
 The IP fabric configuration is eBGP routing protocol and static for underlay.
 1. To access the devices directly from your workstation, you can copy the file [ssh_config](ssh_config) into your ~/.ssh/config. Don't forget to set the ip address of vmmgw to the ip address of the jump host
-![access4](image/vmm_access4.png)
-![access5](image/vmm_access5.png)
+![access4](images/vmm_access4.png)
+![access5](images/vmm_access5.png)
 
 2. open ssh gw into GW, and create static route to 172.16.255.0/24 (to provide connectivity to the loopback of the junos device in the ip fabric
 ```

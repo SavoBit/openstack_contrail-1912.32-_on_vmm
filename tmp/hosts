@@ -1,9 +1,0 @@
-127.0.0.1	localhost.localdomain localhost
-::1		localhost6.localdomain6 localhost6
-172.16.11.10 node0
-172.16.11.11 node1
-172.16.11.12 node2
-172.16.11.13 node3
-172.16.11.14 node4
-172.16.11.15 node5
-172.16.11.16 node6
